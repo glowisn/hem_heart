@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:gsheets/gsheets.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -13,10 +14,19 @@ class HomeView extends GetView<HomeController> {
         centerTitle: true,
       ),
       body: Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
+        child: GetBuilder<HomeController>(
+          builder: (_){
+          return Text(_.count.toString());
+        },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          controller.sendInfo();
+          
+        },
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
       ),
     );
   }
